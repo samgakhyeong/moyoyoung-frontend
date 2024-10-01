@@ -1,6 +1,9 @@
+import { useSelector } from 'react-redux'; // useSelector 가져오기
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const username = useSelector((state) => state.auth.username); // 사용자 이름 가져오기
+
   return (
     <header className="w-full min-h-16 bg-white shadow-md">
       <div className="w-full max-w-screen-lg mx-auto">
@@ -10,8 +13,8 @@ const Header = () => {
           </div>
           <div className="w-2/5 h-full relative">
             <div className="relative">
-              <select className="cursor-pointer text-base font-medium text-gray-600 duration-300 h-full px-4 py-2 border-b border-gray-300 focus:outline-none  focus:ring-emerald-500 w-4/5">
-                <option value="" disabled selected>
+              <select className="cursor-pointer text-base font-medium text-gray-600 duration-300 h-full px-4 py-2 border-b border-gray-300 focus:outline-none focus:ring-emerald-500 w-4/5">
+                <option value="" disabled>
                   카테고리를 선택하세요.
                 </option>
                 <option value="hobby">취미/레저</option>
@@ -39,7 +42,11 @@ const Header = () => {
             </form>
           </div>
           <div className="w-20 h-12 flex items-center justify-end text-slate-500 text-sm font-semibold rounded-md cursor-pointer hover:text-emerald-500 transition-colors duration-300">
+            {username ? (
+              <span>{username}님 환영합니다.</span>
+            ) : (
               <Link to="/allMemberLogin">로그인</Link>
+            )}
           </div>
         </div>
       </div>
