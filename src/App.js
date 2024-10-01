@@ -1,17 +1,8 @@
-import './App.css';
-// import FindId from './components/allMemberLogin/FindId';
-// import FindPassWord from './components/allMemberLogin/FindPassWord';
-import Login from './components/allMemberLogin/Login';
-// import LoginJoin from './components/allMemberLogin/LoginJoin';
+import { RouterProvider } from "react-router-dom";
+import root from "./router/root";
+
 function App() {
-  return (
-    <>
-    <Login/>
-   {/* <LoginJoin/>
-   <FindId/>
-   <FindPassWord/> */}
-   </>
-  );
+  return <RouterProvider router={root}></RouterProvider>;
 }
 
 export default App;
