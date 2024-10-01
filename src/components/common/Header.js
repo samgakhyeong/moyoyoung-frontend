@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
-    <header className="w-full min-h-16 bg-white shadow-lg">
+    <header className="w-full min-h-16 bg-white shadow-md">
       <div className="w-full max-w-screen-lg mx-auto">
         <div className="flex flex-row justify-between items-center w-full h-full py-2">
           <div className="w-36 h-12 flex items-center justify-start text-emerald-500 font-bold text-2xl rounded-md">
@@ -37,7 +39,7 @@ const Header = () => {
             </form>
           </div>
           <div className="w-20 h-12 flex items-center justify-end text-slate-500 text-sm font-semibold rounded-md cursor-pointer hover:text-emerald-500 transition-colors duration-300">
-            로그인
+              <Link to="/allMemberLogin">로그인</Link>
           </div>
         </div>
       </div>

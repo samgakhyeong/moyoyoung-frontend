@@ -1,7 +1,13 @@
+import React from "react";
+import Header from "../common/Header";
+import Footer from "../common/Footer";
+
 export default function LoginJoin() {
   return (
+    <div>
+      <Header/>
 <div className="flex items-center justify-center min-h-screen">
-  <div className="flex flex-col items-center justify-center w-full shadow-md max-w-lg ml-10 mt-20">
+  <div className="flex flex-col items-center justify-center w-full shadow-md   max-w-lg ml-10 mt-2">
 
     <p className="mb-8 font-bold">아이디 입력
     <div className="mt-2">
@@ -83,6 +89,7 @@ export default function LoginJoin() {
     <button className="py-2 mb-5 rounded-md bg-green-200 hover:bg-green-300 px-3 text-sm font-semibold leading-6 text-gray-700">회원가입 하기</button>
   </div>
 </div>
-
+<Footer/>
+</div>
   );
 }
