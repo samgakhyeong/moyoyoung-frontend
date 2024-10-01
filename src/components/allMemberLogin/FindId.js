@@ -1,5 +1,11 @@
+import React from "react";
+import Header from "../common/Header";
+import Footer from "../common/Footer";
+
 export default function FindId() {
   return (
+    <div>
+      <Header/>
     <div className="flex items-center justify-center min-h-screen">
       <div className="flex flex-col items-center justify-center w-full shadow-md max-w-lg ml-10 mb-20">
 
@@ -31,6 +37,8 @@ export default function FindId() {
             
               <button className="py-2 mb-5 rounded-md bg-green-200 hover:bg-green-300 px-3 text-sm font-semibold leading-6 text-gray-700">아이디 찾기</button>
       </div>
+    </div>
+    <Footer/>
     </div>
   );
 }

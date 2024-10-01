@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 export default function Login() {
   return (
     
@@ -72,14 +73,16 @@ export default function Login() {
             <button type="button"
               className="hover:underline"
             >
-              아이디 찾기
+              <Link to="/allMemberLogin/FindId">아이디 찾기</Link>
             </button>
             <button type="button"
               className="hover:underline"
             >
-              비밀번호 찾기
+             <Link to="/allMemberLogin/FindPassWord"> 비밀번호 찾기</Link>
             </button>
-            <button type="button" className="hover:underline">회원가입</button>
+            <button type="button" className="hover:underline">
+              <Link to="/allMemberLogin/LoginJoin">회원가입</Link>
+            </button>
           </div>
 
         </div>
