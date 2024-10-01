@@ -1,8 +1,7 @@
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
-import { children } from "react";
 
-const BasicLayout = () => {
+const BasicLayout = ({ children }) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
