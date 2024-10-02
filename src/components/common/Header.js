@@ -1,15 +1,29 @@
-import { useSelector } from 'react-redux'; // useSelector 가져오기
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { isLoggedIn, logout } from '../../store';
 
 const Header = () => {
-  const username = useSelector((state) => state.auth.username); // 사용자 이름 가져오기
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const username = useSelector((state) => state.auth.username);
+  const loggedIn = isLoggedIn(useSelector(state => state));
 
+  const handleLogout = () => {
+      dispatch(logout());
+      toast.success("로그아웃 되었습니다.");
+      navigate('/');
+  };
+  const handleTitle = () => {
+      navigate('/');
+  };
+  
   return (
     <header className="w-full min-h-16 bg-white shadow-md">
       <div className="w-full max-w-screen-lg mx-auto">
         <div className="flex flex-row justify-between items-center w-full h-full py-2">
           <div className="w-36 h-12 flex items-center justify-start text-emerald-500 font-bold text-2xl rounded-md">
-            모여용
+            <span style={{cursor:"pointer"}} onClick={handleTitle}>모여용</span>
           </div>
           <div className="w-2/5 h-full relative">
             <div className="relative">
@@ -42,8 +56,8 @@ const Header = () => {
             </form>
           </div>
           <div className="w-20 h-12 flex items-center justify-end text-slate-500 text-sm font-semibold rounded-md cursor-pointer hover:text-emerald-500 transition-colors duration-300">
-            {username ? (
-              <span>{username}님 환영합니다.</span>
+            {loggedIn ? (
+              <p onClick={handleLogout} title={username}>로그아웃</p>
             ) : (
               <Link to="/allMemberLogin">로그인</Link>
             )}

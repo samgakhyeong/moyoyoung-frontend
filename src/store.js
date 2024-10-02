@@ -1,28 +1,49 @@
-// store.js
 import { configureStore, createSlice } from '@reduxjs/toolkit';
+import { persistReducer, persistStore } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+
+const persistConfig = {
+    key: 'moyoyoung',
+    storage,
+};
 
 const authSlice = createSlice({
     name: 'auth',
-    initialState: {
-        token: null,
-        userId: null
+    initialState: { 
+        accessToken: null,
+        refreshToken: null,
+        username: null,
     },
     reducers: {
-        setToken: (state, action) => {
-            state.token = action.payload;
+        setAccessToken: (state, action) => {
+            state.accessToken = action.payload;
         },
-        setUserId: (state, action) => {
-            state.userId = action.payload;
+        setRefreshToken: (state, action) => {
+            state.refreshToken = action.payload;
+        },
+        setUsername: (state, action) => {
+            state.username = action.payload;
+        },
+        logout: (state) => { 
+            state.accessToken = null;
+            state.refreshToken = null;
+            state.username = null;
         },
     },
 });
 
-export const { setToken, setUserId } = authSlice.actions;
+export const isLoggedIn = (state) => {
+    return state.auth.username !== null;
+};
+
+const persistedReducer = persistReducer(persistConfig, authSlice.reducer);
 
 const store = configureStore({
     reducer: {
-        auth: authSlice.reducer,
+        auth: persistedReducer,
     },
 });
 
+export const persistor = persistStore(store);
+export const { setAccessToken, setRefreshToken, setUsername, logout } = authSlice.actions;
 export default store;
