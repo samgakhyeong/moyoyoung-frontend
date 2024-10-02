@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
+import { Provider } from 'react-redux';
 import App from "./App";
+import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { PostProvider } from "./components/allBoard/PostContext";
+import store from './store';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <PostProvider>
+    <Provider store={store}>
       <App />
-    </PostProvider>
+    </Provider>
   </React.StrictMode>
 );
 
