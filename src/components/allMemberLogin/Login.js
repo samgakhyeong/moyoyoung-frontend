@@ -1,3 +1,4 @@
+import LogoIcon from "../imgs/LogoIcon.png";
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
@@ -61,7 +62,7 @@ function Login() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            src={LogoIcon}
             className="mx-auto h-12 w-auto"
           />
         </div>

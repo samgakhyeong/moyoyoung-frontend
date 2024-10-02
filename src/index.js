@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import App from "./App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import { PostProvider } from "./components/allBoard/PostContext";
 import store from './store';
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
