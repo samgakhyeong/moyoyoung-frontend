@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import LogoIcon from "../imgs/LogoIcon.png";
 export default function Login() {
   return (
     
@@ -6,7 +7,7 @@ export default function Login() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             alt="Your Company"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            src={LogoIcon}
             className="mx-auto h-12 w-auto"
           />
         </div>

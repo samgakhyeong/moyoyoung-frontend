@@ -22,6 +22,9 @@ const Header = () => {
               </select>
             </div>
           </div>
+          <div className="w-36 flex items-center text-emerald-500 font-bold text-xl rounded-md">
+            <Link to="/allBoard">임시 게시판</Link>
+          </div>
 
           <div className="w-2/5 h-12 flex items-center justify-end rounded-md">
             <form className="w-full h-full flex items-center">
