@@ -1,4 +1,3 @@
-// BoardInput.js
 import React, { useState, useRef } from "react";
 import { usePostContext } from "./PostContext";
 import { useNavigate } from "react-router-dom";
