@@ -1,6 +1,5 @@
 // 생성자 : Haein
 
-import BasicLayout from "../../layouts/BasicLayout";
 
 const MettingAdd = () => {
   return (
