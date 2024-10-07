@@ -9,14 +9,14 @@ import BoardDetail from "./components/allBoard/BoardDetail";
 
 const App = () => {
   return (
+    <>
     <RouterProvider router={root}>
-      <PostProvider>
-        <BoardMain />
-        <BoardInput />
-        <BoardDetail />
-      </PostProvider>
-      <ToastContainer hideProgressBar={true} position="bottom-center" />
+      <BoardMain />
+      <BoardInput />
+      <BoardDetail />
     </RouterProvider>
+    <ToastContainer hideProgressBar={true} position="bottom-center" />
+    </>
   );
 };
 export default App;
