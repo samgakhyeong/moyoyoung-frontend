@@ -6,7 +6,7 @@ const Loading = <div>Loading···</div>;
 
 const GroupInfo = lazy(() => import("../pages/group/Info"));
 const GroupAdd = lazy(() => import("../pages/group/AddPage"));
-const MettingAdd = lazy(() => import("../pages/group/MettingAddPage"));
+const MeetingAdd = lazy(() => import("../pages/group/MeetingAddPage"));
 
 const groupRouter = () => {
   return [
@@ -27,10 +27,10 @@ const groupRouter = () => {
       ),
     },
     {
-      path: "mettingAdd",
+      path: "meetingAdd",
       element: (
         <Suspense fallback={Loading}>
-          <MettingAdd />
+          <MeetingAdd />
         </Suspense>
       ),
     },
