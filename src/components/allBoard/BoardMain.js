@@ -6,18 +6,19 @@ import { usePostContext } from "./PostContext";
 
 export default function BoardMain() {
     const { posts } = usePostContext(); // posts를 가져옴
+    
 
     return (
         <div>
             <Header />
-            <div className="flex items-center justify-end pr-56 pt-6">
-                <button className="text-xl font-bold hover:text-gray-500 transition duration-500">
+            <div className="flex items-center justify-end pr-[15.4rem] pt-6">
+                <button className="text-xl font-bold hover:text-gray-500 transition duration-500 ">
                     <Link to="/allBoard/BoardInput">게시글 작성</Link>
                 </button>
             </div>
 
-            <div className="flex justify-center items-center h-screen">
-                <div className="flex flex-col items-center justify-center w-full shadow-md max-w-6xl ml-10 pr-[60rem] h-[calc(100vh-56px)]">
+            <div className="flex justify-center items-center h-screen mr-[4.6rem]">
+                <div className="flex flex-col items-center justify-center w-[64rem] shadow-md ml-[4.6rem] pr-[50rem] h-[calc(100vh-56px)]">
                     <div className="font-bold text-2xl">게시글 리스트</div>
 
 
@@ -26,7 +27,7 @@ export default function BoardMain() {
                             <p>작성된 게시글이 없습니다.</p>
                         ) : (
                             posts.map((post) => (
-                                <div key={post.id} className="border-b py-4 px-4 m-4 ml-[61rem] bg-gray-400 w-[70rem]">
+                                <div key={post.id} className="border-b py-4 px-4 m-4 ml-[51rem] bg-gray-400 w-[60rem] ">
                                     <Link to={`/allBoard/BoardDetail/${post.id}`} className="font-bold text-xl">
                                         {post.title}
                                     </Link>
@@ -36,11 +37,9 @@ export default function BoardMain() {
                             ))
                         )}
                     </div>
-         
-
-
                 </div>
             </div>
+            
 
             <div className="flex justify-center items-center">
                 <div className="flex space-x-2">
@@ -50,7 +49,8 @@ export default function BoardMain() {
                     <button className="bg-emerald-500 text-black px-4 py-2 rounded mb-6 hover:text-white transition duration-300">4</button>
                     <button className="bg-emerald-500 text-black px-4 py-2 rounded mb-6 hover:text-white transition duration-300">5</button>
                 </div>
-            </div>
+            </div>  
+
 
             <Footer />
         </div>
