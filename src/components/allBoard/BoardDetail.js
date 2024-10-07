@@ -16,19 +16,19 @@ export default function BoardDetail() {
     return (
         <div>
             <Header />
-            <div className="flex justify-center items-center h-screen">
-                <div className="flex flex-col justify-center items-center w-full shadow-md max-w-6xl ml-10 h-[calc(100vh-56px)]">
-                    <div>
-                        <div className="bg-emerald-400 h-20 mt-6 flex justify-center items-center text-xl font-bold w-[60rem]">
+            <div className="flex justify-center items-center h-screen ">
+                <div className="flex flex-col justify-center items-center w-full shadow-md max-w-5xl h-[calc(100vh-24px)]">
+                    <div className="mb-[4rem]">
+                        <div className="bg-emerald-400 h-20 mt-6 flex justify-center items-center text-xl font-bold w-[60rem] overflow-y-auto">
                             {post.title} {/* 게시글 제목 표시 */}
                         </div>
-                        <div className="bg-emerald-400 h-[10rem] mt-6 flex justify-center items-center text-xl font-bold w-[60rem]">
+                        <div className="bg-emerald-400 h-[10rem] mt-6 flex justify-center items-center text-xl font-bold w-[60rem] overflow-auto">
                             {post.content} {/* 게시글 내용 표시 */}
                         </div>
-                        <div className="bg-emerald-400 h-[10rem] mt-6 flex justify-center items-center text-xl font-bold w-[60rem]">
+                        <div className="bg-emerald-400 h-[10rem] mt-6 flex justify-center items-center text-xl font-bold w-[60rem] overflow-auto">
                             댓글 목록
                         </div>
-                        <div>
+                        <div className="mt-[2rem]">
                             <label
                                 className="text-xl font-bold mb-2 flex justify-center"
                                 htmlFor="content"
@@ -43,10 +43,10 @@ export default function BoardDetail() {
                             />
                         </div>
                         <div className="flex flex-row">
-                            <div className="bg-emerald-400 h-12 mt-2 flex justify-center items-center text-xl font-bold w-[10rem] rounded hover:text-white transition duration-300">
+                            <div className="bg-emerald-400 h-12 mt-[-3.5rem] flex justify-center items-center text-xl font-bold w-[10rem] rounded hover:text-white transition duration-300">
                                 <Link to="/allBoard/BoardMain">게시글 목록 이동</Link>
                             </div>
-                            <div className="bg-emerald-400 h-12 mt-2 ml-[40rem] flex justify-center items-center text-xl font-bold w-[10rem] rounded hover:text-white transition duration-300">
+                            <div className="bg-emerald-400 h-12 mt-[-3.5rem] ml-[40rem] flex justify-center items-center text-xl font-bold w-[10rem] rounded hover:text-white transition duration-300">
                                 댓글 입력
                             </div>
                         </div>

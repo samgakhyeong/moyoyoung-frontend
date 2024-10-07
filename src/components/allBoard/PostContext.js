@@ -6,8 +6,8 @@ export const PostProvider = ({ children }) => {
     const [posts, setPosts] = useState([]);
     
     const addPost = (title, content, file) => {
-        if (posts.length >= 10) {
-            alert("게시글 한 페이지당 10개까지만 추가할 수 있습니다.");
+        if (posts.length >= 1) {
+
             return;
         }
         
@@ -37,3 +37,4 @@ export const usePostContext = () => {
     }
     return context;
 };
+
