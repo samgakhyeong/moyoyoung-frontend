@@ -1,16 +1,27 @@
+// 최초 생성자 : Haein
+// 추가 작성자 : Junhee
+
 import { Suspense, lazy } from "react";
-import { createBrowserRouter } from "react-router-dom";
+import GroupRouter from "./groupRouter";
 
+const { createBrowserRouter } = require("react-router-dom");
 
+// Loading
 const Loading = <div>Loading···</div>;
+// Member
 const Main = lazy(() => import("../pages/MainPage"));
-const Login = lazy(() => import("../components/allMemberLogin/Login"))
-const LoginJoin = lazy(() => import("../components/allMemberLogin/LoginJoin"))
-const FindId = lazy(() => import("../components/allMemberLogin/FindId"))
-const FindPassWord = lazy(() => import ("../components/allMemberLogin/FindPassWord"))
-const BoardMain = lazy(() => import ("../components/allBoard/BoardMain"))
-const BoardInput = lazy(() => import ("../components/allBoard/BoardInput"))
-const BoardDetail = lazy(() => import("../components/allBoard/BoardDetail"))
+const Login = lazy(() => import("../components/allMemberLogin/Login"));
+const LoginJoin = lazy(() => import("../components/allMemberLogin/LoginJoin"));
+const FindId = lazy(() => import("../components/allMemberLogin/FindId"));
+const FindPassWord = lazy(() =>
+  import("../components/allMemberLogin/FindPassWord")
+);
+// Board
+const BoardMain = lazy(() => import("../components/allBoard/BoardMain"));
+const BoardInput = lazy(() => import("../components/allBoard/BoardInput"));
+const BoardDetail = lazy(() => import("../components/allBoard/BoardDetail"));
+// Small Group
+const GroupIndex = lazy(() => import("../pages/group/IndexPage"));
 
 const root = createBrowserRouter([
   {
@@ -22,7 +33,7 @@ const root = createBrowserRouter([
     ),
   },
   {
-    path: "/allMemberLogin",  
+    path: "/allMemberLogin",
     element: (
       <Suspense fallback={Loading}>
         <Login />
@@ -38,7 +49,7 @@ const root = createBrowserRouter([
     ),
   },
   {
-    path: "/allMemberLogin/FindId",  
+    path: "/allMemberLogin/FindId",
     element: (
       <Suspense fallback={Loading}>
         <FindId />
@@ -46,7 +57,7 @@ const root = createBrowserRouter([
     ),
   },
   {
-    path: "/allMemberLogin/FindPassWord",  
+    path: "/allMemberLogin/FindPassWord",
     element: (
       <Suspense fallback={Loading}>
         <FindPassWord />
@@ -54,23 +65,7 @@ const root = createBrowserRouter([
     ),
   },
   {
-    path: "/allBoard",  
-    element: (
-      <Suspense fallback={Loading}>
-          <BoardMain />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/allBoard/BoardInput",  
-    element: (
-      <Suspense fallback={Loading}>
-        <BoardInput />
-      </Suspense>
-    ),
-  },
-  {
-    path: "/allBoard/BoardMain",  
+    path: "/allBoard",
     element: (
       <Suspense fallback={Loading}>
         <BoardMain />
@@ -78,12 +73,37 @@ const root = createBrowserRouter([
     ),
   },
   {
-    path: "/allBoard/BoardDetail/:id",  
+    path: "/allBoard/BoardInput",
+    element: (
+      <Suspense fallback={Loading}>
+        <BoardInput />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/allBoard/BoardMain",
+    element: (
+      <Suspense fallback={Loading}>
+        <BoardMain />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/allBoard/BoardDetail/:id",
     element: (
       <Suspense fallback={Loading}>
         <BoardDetail />
       </Suspense>
     ),
+  },
+  {
+    path: "group",
+    element: (
+      <Suspense fallback={Loading}>
+        <GroupIndex />
+      </Suspense>
+    ),
+    children: GroupRouter(),
   },
 ]);
 

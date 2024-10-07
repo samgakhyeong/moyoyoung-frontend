@@ -1,30 +1,52 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { isLoggedIn, logout } from '../../store';
+// 생성자 : Haein
+
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { isLoggedIn, logout } from "../../store";
 
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const username = useSelector((state) => state.auth.username);
-  const loggedIn = isLoggedIn(useSelector(state => state));
+  const loggedIn = isLoggedIn(useSelector((state) => state));
 
   const handleLogout = () => {
-      dispatch(logout());
-      toast.success("로그아웃 되었습니다.");
-      navigate('/');
+    dispatch(logout());
+    toast.success("로그아웃 되었습니다.");
+    navigate("/");
   };
   const handleTitle = () => {
-      navigate('/');
+    navigate("/");
   };
-  
+
   return (
     <header className="w-full min-h-16 bg-white shadow-md">
       <div className="w-full max-w-screen-lg mx-auto">
         <div className="flex flex-row justify-between items-center w-full h-full py-2">
           <div className="w-36 h-12 flex items-center justify-start text-emerald-500 font-bold text-2xl rounded-md">
-            <span style={{cursor:"pointer"}} onClick={handleTitle}>모여용</span>
+            <span style={{ cursor: "pointer" }} onClick={handleTitle}>
+              모여용
+            </span>
           </div>
+
+          <div className="w-36 relative">
+            <div className="relative group">
+              <div className="cursor-pointer text-lg font-medium text-gray-600 hover:text-emerald-500 transition-colors duration-300">
+                임시메뉴
+              </div>
+              {/* 마우스를 올리면 하위 메뉴가 보이도록 수정 */}
+              <ul className="absolute left-0 mt-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 bg-white shadow-lg rounded-md py-2 w-full z-10 transform translate-y-2">
+                <li className="px-4 py-2 hover:bg-gray-100">
+                  <Link to="/group">소모임</Link>
+                </li>
+                <li className="px-4 py-2 hover:bg-gray-100">
+                  <Link to="/allBoard">임시 게시판</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
           <div className="w-2/5 h-full relative">
             <div className="relative">
               <select className="cursor-pointer text-base font-medium text-gray-600 duration-300 h-full px-4 py-2 border-b border-gray-300 focus:outline-none focus:ring-emerald-500 w-4/5">
@@ -39,9 +61,9 @@ const Header = () => {
               </select>
             </div>
           </div>
-          <div className="w-36 flex items-center text-emerald-500 font-bold text-xl rounded-md">
+          {/* <div className="w-36 flex items-center text-emerald-500 font-bold text-xl rounded-md">
             <Link to="/allBoard">임시 게시판</Link>
-          </div>
+          </div> */}
 
           <div className="w-2/5 h-12 flex items-center justify-end rounded-md">
             <form className="w-full h-full flex items-center">
@@ -60,7 +82,9 @@ const Header = () => {
           </div>
           <div className="w-20 h-12 flex items-center justify-end text-slate-500 text-sm font-semibold rounded-md cursor-pointer hover:text-emerald-500 transition-colors duration-300">
             {loggedIn ? (
-              <p onClick={handleLogout} title={username}>로그아웃</p>
+              <p onClick={handleLogout} title={username}>
+                로그아웃
+              </p>
             ) : (
               <Link to="/allMemberLogin">로그인</Link>
             )}
