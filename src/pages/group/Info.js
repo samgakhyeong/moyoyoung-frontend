@@ -15,6 +15,7 @@ const Info = () => {
         <img
           className="w-full h-full"
           src="https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg"
+          alt="groupProfileImage"
         />
       </div>
       <div className="w-full px-3 py-5">
