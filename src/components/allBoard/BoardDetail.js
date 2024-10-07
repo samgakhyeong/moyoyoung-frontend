@@ -52,19 +52,19 @@ export default function BoardDetail() {
 
                         {/* 댓글 목록 */}
                         <div className="bg-emerald-400 h-[10rem] mt-6 flex flex-col justify-start items-start text-xl font-bold w-[60rem] overflow-auto p-4">
-    <h2 className="text-xl font-semibold mb-4">댓글 목록</h2>
-    {comments.length > 0 ? (
-        comments.map((comment, index) => (
-            <div key={index} className="mb-2">
-                <span className="text-md">
-                    {index + 1}번째: {comment} {/* 댓글 앞에 번호 추가 */}
-                </span>
-            </div>
-        ))
-    ) : (
-        <div className="text-md">댓글이 없습니다. 글을 작성해주세요.</div>
-    )}
-</div>
+                            <h2 className="text-xl font-semibold mb-4">댓글 목록</h2>
+                            {comments.length > 0 ? (
+                                comments.map((comment, index) => (
+                                    <div key={index} className="mb-2">
+                                        <span className="text-md">
+                                            {index + 1}번째: {comment} {/* 댓글 앞에 번호 추가 */}
+                                        </span>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="text-md">댓글이 없습니다. 글을 작성해주세요.</div>
+                            )}
+                        </div>
 
                         {/* 댓글 입력 */}
                         <div className="mt-[2rem]">

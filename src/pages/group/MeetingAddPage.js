@@ -1,6 +1,5 @@
 // 생성자 : Haein
 
-
 const MettingAdd = () => {
   return (
     <div className="w-full px-3 py-5">
@@ -36,7 +35,7 @@ const MettingAdd = () => {
         ></textarea>
       </div>
       <div className="w-full my-10">
-        <button className="w-1/3 h-12 m-auto block text-white font-semibold rounded-full bg-gray-500 hover:bg-emerald-500 transition-colors duration-300">
+        <button className="block w-1/4 p-2 m-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-300 cursor-pointer">
           정기모임 생성하기
         </button>
       </div>
