@@ -15,11 +15,11 @@ axiosInstance.interceptors.request.use((config) => {
         return config;
     }
 
-    if (token) {
-        config.headers['Authorization'] = `Bearer ${token}`;
-    } else {
-        return Promise.reject(new Error('로그인이 필요합니다.'));
-    }
+    // if (token) {
+    //     config.headers['Authorization'] = `Bearer ${token}`;
+    // } else {
+    //     return Promise.reject(new Error('로그인이 필요합니다.'));
+    // }
     return config;
 }, (error) => {
     return Promise.reject(error);
