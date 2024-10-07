@@ -1,3 +1,5 @@
+// 생성자 : Haein
+
 const Footer = () => {
   return (
     <footer>
