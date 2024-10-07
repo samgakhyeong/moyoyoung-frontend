@@ -1,3 +1,4 @@
+// BoardInput.js
 import React, { useState, useRef } from "react";
 import { usePostContext } from "./PostContext";
 import { useNavigate } from "react-router-dom";
@@ -33,12 +34,13 @@ export default function BoardInput() {
             return;
         }
 
-        // 게시글 초과 체크
-        if (file) {
-            addPost(title, content, file);  // 게시글 추가
+        // 게시글 추가 시도
+        const isPostAdded = addPost(title, content, file);  
+
+        if (isPostAdded) {  // 게시글이 추가된 경우
             alert("게시글이 성공적으로 작성되었습니다.");
             navigate("/allBoard/BoardMain"); // 게시글 작성 후 BoardMain으로 리디렉션
-        } else {
+        } else {  // 게시글이 초과된 경우
             alert("게시글 한 페이지당 1개까지만 추가할 수 있습니다. 게시글이 초과되었습니다.");
             navigate("/allBoard/BoardMain");  // 게시글이 초과된 경우 BoardMain으로 리디렉션
         }
