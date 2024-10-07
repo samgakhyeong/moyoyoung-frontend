@@ -13,9 +13,7 @@ const Main = lazy(() => import("../pages/MainPage"));
 const Login = lazy(() => import("../components/allMemberLogin/Login"));
 const LoginJoin = lazy(() => import("../components/allMemberLogin/LoginJoin"));
 const FindId = lazy(() => import("../components/allMemberLogin/FindId"));
-const FindPassWord = lazy(() =>
-  import("../components/allMemberLogin/FindPassWord")
-);
+const FindPassWord = lazy(() =>import("../components/allMemberLogin/FindPassWord"));
 // Board
 const BoardMain = lazy(() => import("../components/allBoard/BoardMain"));
 const BoardInput = lazy(() => import("../components/allBoard/BoardInput"));
