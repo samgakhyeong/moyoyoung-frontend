@@ -1,11 +1,14 @@
+// 생성자 : Haein
+
+import { Link } from "react-router-dom";
 import BasicLayout from "../layouts/BasicLayout";
 
 const MainPage = () => {
   return (
     <BasicLayout>
-      <div className="flex flex-row-reverse  w-full pt-8">
+      <div className="flex flex-row-reverse w-full pt-8">
         <button className="w-1/4 p-2 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full transition-colors duration-300 cursor-pointer">
-          소모임 개설하기
+          <Link to="/group/add">소모임 개설하기</Link>
         </button>
       </div>
       <div className="flex justify-between w-full h-full py-8">
