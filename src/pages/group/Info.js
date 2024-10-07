@@ -1,13 +1,13 @@
-// 생성자 : Haein
-
 import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Info = () => {
   const navigate = useNavigate();
+
+  // 의존성 배열에 navigate 추가
   const handleClickMettingAdd = useCallback(() => {
     navigate({ pathname: "mettingAdd" });
-  });
+  }, [navigate]);  // navigate가 변경될 때마다 handleClickMettingAdd가 다시 생성됨
 
   return (
     <div className="w-full">
@@ -15,6 +15,7 @@ const Info = () => {
         <img
           className="w-full h-full"
           src="https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg"
+          alt="사이트"
         />
       </div>
       <div className="w-full px-3 py-5">

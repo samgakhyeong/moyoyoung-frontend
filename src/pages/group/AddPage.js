@@ -1,7 +1,5 @@
 // 생성자 : Haein
 
-import BasicLayout from "../../layouts/BasicLayout";
-
 const Addpage = () => {
   return (
     <div className="w-full px-3 py-5">

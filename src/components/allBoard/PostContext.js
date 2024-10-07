@@ -1,11 +1,10 @@
-// PostContext.js
 import React, { createContext, useContext, useState } from 'react';
 
 const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
     const [posts, setPosts] = useState([]);
-    
+
     const addPost = (title, content, file) => {
         if (posts.length >= 1) {  // 게시글이 이미 1개 이상인 경우
             return false;  // 게시글 추가를 하지 않고 false 반환
