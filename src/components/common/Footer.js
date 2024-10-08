@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div className="bg-white border-t border-gray-200">
         <div className="w-full max-w-screen-lg mx-auto py-6">
-          <div className="text-gray-700 mb-6">
+          <div className="text-gray-600 mb-6">
             <p className="font-bold text-xl text-emerald-500">
               주식회사 모여용
             </p>
@@ -30,34 +30,34 @@ const Footer = () => {
               </p>
             </div>
           </div>
-          <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-500">
+          <div className="flex flex-col sm:flex-row justify-between items-center text-sm text-gray-600">
             <ul className="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-4 mb-4 sm:mb-0">
               <li>
                 <a
-                  href="#"
-                  className="hover:text-emerald-500 transition-colors duration-300"
+                  href="#!"
+                  className="hover:text-emerald-500 transition-colors duration-500"
                 >
                   이용약관
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  className="hover:text-emerald-500 transition-colors duration-300"
+                  href="#!"
+                  className="hover:text-emerald-500 transition-colors duration-500"
                 >
                   개인정보처리방침
                 </a>
               </li>
               <li>
                 <a
-                  href="#"
-                  className="hover:text-emerald-500 transition-colors duration-300"
+                  href="#!"
+                  className="hover:text-emerald-500 transition-colors duration-500"
                 >
                   사업자정보확인
                 </a>
               </li>
             </ul>
-            <p className="text-sm text-gray-400">
+            <p className="text-sm text-gray-600">
               &copy; 2024 모여용. All rights reserved.
             </p>
           </div>
