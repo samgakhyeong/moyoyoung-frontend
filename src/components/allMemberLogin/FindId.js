@@ -1,13 +1,74 @@
-import React from "react";
+import React, { useState, useRef } from "react";
+import { toast } from 'react-toastify';
+import axiosInstance from '../../axiosInstance';
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 
 export default function FindId() {
+  
+  const [name, setName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState(null);
+  
+  const nameRef = useRef(null);
+  const phoneNumberRef = useRef(null);
+  
+  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!name || !phoneNumber) {
+      toast.error("이름과 휴대폰번호를 입력해 주세요.");
+      return;
+    }
+
+    try {
+      const response = await axiosInstance.get("http://localhost:8080/users/check/findId", {
+        params: {
+          name: name,
+          phoneNumber: phoneNumber,
+        },
+      });
+
+      if (response.status === 200) {
+        if (response.data.success && response.data.data.username) {
+            setResult(response.data.data.username)
+            setError(null);
+            setName("");
+            setPhoneNumber("");
+            return;
+        } else {
+          toast.error(`서버 응답 오류: ${response.statusText} (${response.status})`);
+          console.error("서버 오류:", response);
+          return;
+        }
+      }
+    } catch (err) {
+      if (err.response) {
+        if (err.response.status === 404) {
+          setResult(null);
+          setError(true);
+          setPhoneNumber("");
+          return;
+        } else {
+          toast.error(err.response.data.errorMessage || "서버 오류가 발생했습니다.");
+        }
+      } else if (err.request) {
+        toast.error("서버와의 연결에 실패했습니다.");
+      } else {
+        toast.error(`요청 설정 오류: ${err.message}`);
+      }
+    }
+  };
+  
+  
   return (
     <div>
       <Header />
+      <form onSubmit={handleSubmit}>
       <div className="flex items-center justify-center min-h-screen">
-        <div className="flex flex-col items-center justify-center w-full shadow-md max-w-lg ml-10 mb-20">
+        <div className="flex flex-col items-center justify-center w-full shadow-md max-w-lg mt-20 ml-10 mb-20">
           <h1 className="mb-8 font-bold text-4xl">아이디 찾기</h1>
 
           <p className="mb-8 font-bold">
@@ -15,9 +76,12 @@ export default function FindId() {
             <div className="mt-2">
               <input
                 id="idInputs"
-                name="memberInput"
-                type="email"
+                name="name"
+                type="text"
                 required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                ref={nameRef}
                 className="rounded-md py-2 px-2 mr-10 w-full ml-0 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-200"
               />
             </div>
@@ -28,12 +92,20 @@ export default function FindId() {
             <div className="mt-2">
               <input
                 id="idInputs"
-                name="memberInput"
-                type="email"
+                name="phoneNumber"
+                type="text"
                 required
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+                ref={phoneNumberRef}
                 className="rounded-md py-2 px-2 mr-10 w-full ml-0 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-200"
               />
             </div>
+          </p>
+
+          <p ref={phoneNumberRef} className="mb-8 font-bold text-red-600">
+            {result && ("당신의 ID는 " + result + " 입니다.")}
+            {error && "아이디를 찾을 수 없습니다."}
           </p>
 
           <button className="py-2 mb-5 rounded-md bg-green-200 hover:bg-green-300 px-3 text-sm font-semibold leading-6 text-gray-700">
@@ -41,6 +113,7 @@ export default function FindId() {
           </button>
         </div>
       </div>
+      </form>
       <Footer />
     </div>
   );

@@ -13,16 +13,6 @@ function Login() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     
-
-    const handleChange = (event) => {
-        const { id, value } = event.target;
-        if (id === 'username') {
-            setUsernameInput(value);
-        } else if (id === 'password') {
-            setPassword(value);
-        }
-    };
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -85,7 +75,7 @@ function Login() {
                   required
                   autoComplete="on"
                   value={username}
-                  onChange={handleChange}
+                  onChange={(e) => setUsernameInput(e.target.value)}
                   className="block w-full rounded-md py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-200 px-2"
                 />
               </div>
@@ -99,9 +89,6 @@ function Login() {
                   비밀번호
                 </label>
                 <div className="text-sm">
-                  {/* <a href="https://example.com" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                        Forgot password?
-                      </a> */}
                 </div>
               </div>
               <div className="mt-2">
@@ -112,7 +99,7 @@ function Login() {
                   required
                   autoComplete="current-password"
                   value={password}
-                  onChange={handleChange}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="block w-full rounded-md py-2 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-200 px-2"
                 />
               </div>
