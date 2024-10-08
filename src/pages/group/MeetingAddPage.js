@@ -35,7 +35,7 @@ const MettingAdd = () => {
         ></textarea>
       </div>
       <div className="w-full my-10">
-        <button className="block w-1/4 p-2 m-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-300 cursor-pointer">
+        <button className="block w-1/4 p-2 m-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-500 cursor-pointer">
           정기모임 생성하기
         </button>
       </div>
