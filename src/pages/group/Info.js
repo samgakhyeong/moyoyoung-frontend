@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 const Info = () => {
   const navigate = useNavigate();
-  const handleClickMettingAdd = useCallback(() => {
-    navigate({ pathname: "mettingAdd" });
+  const handleClickMeetingAdd = useCallback(() => {
+    navigate({ pathname: "meetingAdd" });
   });
 
   return (
@@ -15,6 +15,7 @@ const Info = () => {
         <img
           className="w-full h-full"
           src="https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg"
+          alt="groupProfileImage"
         />
       </div>
       <div className="w-full px-3 py-5">
@@ -57,8 +58,8 @@ const Info = () => {
         </div>
         <div className="w-full my-10">
           <button
-            className="w-1/3 h-12 m-auto block text-white font-semibold rounded-full bg-gray-500 hover:bg-emerald-500 transition-colors duration-300"
-            onClick={handleClickMettingAdd}
+            className="block w-1/4 p-2 m-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-300 cursor-pointer"
+            onClick={handleClickMeetingAdd}
           >
             정기모임 만들기
           </button>

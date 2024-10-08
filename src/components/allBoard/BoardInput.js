@@ -1,4 +1,4 @@
-// BoardInput.js
+
 import React, { useState, useRef } from "react";
 import { usePostContext } from "./PostContext";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +12,10 @@ export default function BoardInput() {
     const [content, setContent] = useState("");
     const fileInputRef = useRef(null);
     const [fileName, setFileName] = useState('');
+
+    // 현재 페이지를 쿼리 파라미터에서 가져오는 방법
+    const queryParams = new URLSearchParams(window.location.search);
+    const currentPage = queryParams.get('page') || '1';
 
     const handleFileChange = (event) => {
         const files = event.target.files;
@@ -28,22 +32,15 @@ export default function BoardInput() {
     const handleSubmit = (e) => {
         e.preventDefault();
         const file = fileInputRef.current.files[0]; 
-
+    
         if (!file) {
             alert("첨부할 파일을 선택하세요.");
             return;
         }
-
-        // 게시글 추가 시도
-        const isPostAdded = addPost(title, content, file);  
-
-        if (isPostAdded) {  // 게시글이 추가된 경우
-            alert("게시글이 성공적으로 작성되었습니다.");
-            navigate("/allBoard/BoardMain"); // 게시글 작성 후 BoardMain으로 리디렉션
-        } else {  // 게시글이 초과된 경우
-            alert("게시글 한 페이지당 1개까지만 추가할 수 있습니다. 게시글이 초과되었습니다.");
-            navigate("/allBoard/BoardMain");  // 게시글이 초과된 경우 BoardMain으로 리디렉션
-        }
+    
+        // 게시글 추가 시 현재 페이지를 인자로 넘김
+        addPost(title, content, file, currentPage, navigate);  
+    
     };
 
     return (
