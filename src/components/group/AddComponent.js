@@ -1,6 +1,7 @@
 // Haein
 import { useRef, useState } from "react";
 import { groupRegister } from "../../api/groupApi";
+import { useNavigate } from "react-router-dom";
 import FetchingModal from "../common/FetchingModal";
 import ResultModal from "../common/ResultModal";
 
@@ -10,10 +11,12 @@ const initState = {
   category: "", // 모임카테고리
   title: "", // 모임명
   content: "", // 모임소개글
-  files: [], // 모임프로필사진
+  file: [], // 모임프로필사진
 };
 
 const AddComponent = () => {
+  const navigate = useNavigate();
+
   const [group, setGroup] = useState({ ...initState });
   const uploadRef = useRef();
 
@@ -48,7 +51,7 @@ const AddComponent = () => {
 
     // 2.유효성 통과시 데이터 저장하기
     const formData = new FormData();
-    formData.append("files", files[0]);
+    formData.append("file", files[0]);
     formData.append("checkOnline", group.checkOnline);
     formData.append("country", group.country);
     formData.append("category", group.category);
@@ -56,8 +59,6 @@ const AddComponent = () => {
     formData.append("content", group.content);
 
     setFetching(true); // loading 띄움
-
-    console.log("======================");
     console.log(formData);
 
     groupRegister(formData)
@@ -67,13 +68,18 @@ const AddComponent = () => {
       })
       .catch((error) => {
         setFetching(false); // 에러 발생시 로딩 닫음
-        setErrorMsg("소모임 생성 중 오류가 발생했습니다.");
+        // setErrorMsg(true);
       });
   };
 
   const closeModal = () => {
     setResult(null);
-    setErrorMsg(null);
+    // setErrorMsg(null);
+
+    // 메인으로 이동
+    navigate({
+      pathname: "/",
+    });
   };
 
   return (
@@ -82,7 +88,7 @@ const AddComponent = () => {
       {result ? (
         <ResultModal
           title={"SUCESS"}
-          content={`${result}번 소모임생성완료`}
+          content={`${result}번 소모임 생성완료`}
           callbackFn={closeModal}
         />
       ) : (
@@ -174,7 +180,7 @@ const AddComponent = () => {
         </label>
         <input
           type={"file"}
-          name="files"
+          name="file"
           ref={uploadRef}
           multiple={false}
           className="w-full h-full p-2 border-b border-gray-200 focus:outline-none"

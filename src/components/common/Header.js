@@ -37,9 +37,6 @@ const Header = () => {
               </div>
               <ul className="absolute left-0 mt-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 bg-white shadow-lg rounded-md py-2 w-full z-10 transform translate-y-2">
                 <li className="px-4 py-2 hover:bg-gray-100">
-                  <Link to="/group">소모임</Link>
-                </li>
-                <li className="px-4 py-2 hover:bg-gray-100">
                   <Link to="/allBoard">임시 게시판</Link>
                 </li>
               </ul>
