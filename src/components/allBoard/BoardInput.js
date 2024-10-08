@@ -1,4 +1,3 @@
-
 import React, { useState, useRef } from "react";
 import { usePostContext } from "./PostContext";
 import { useNavigate } from "react-router-dom";
@@ -38,8 +37,10 @@ export default function BoardInput() {
             return;
         }
     
+        const createdAt = new Date().toISOString();
+
         // 게시글 추가 시 현재 페이지를 인자로 넘김
-        addPost(title, content, file, currentPage, navigate);  
+        addPost(title, content, file, currentPage,createdAt, navigate);  
     
     };
 
@@ -79,7 +80,7 @@ export default function BoardInput() {
                         <div className="mb-4 flex items-center">
                             <label
                                 onClick={handleClick}
-                                className="bg-gray-300 p-2 rounded cursor-pointer font-bold"
+                                className="bg-slate-400 hover:text-white hover:bg-emerald-400 transition duration-500 p-2 rounded cursor-pointer font-bold"
                             >
                                 파일 첨부
                             </label>
@@ -90,12 +91,12 @@ export default function BoardInput() {
                                 className="hidden"
                             />
                             {fileName && (
-                                <div className="ml-4">선택한 파일: {fileName}</div>
+                                <div className="ml-4 w-[250px] truncate">선택한 파일: {fileName}</div>
                             )}
                         </div>
                         <button
                             type="submit"
-                            className="bg-emerald-400 text-black font-bold py-2 px-4 rounded hover:text-white transition duration-300"
+                            className="bg-slate-400 text-black font-bold py-2 px-4 rounded hover:text-white hover:bg-emerald-400 transition duration-500"
                         >
                             게시글 작성
                         </button>
