@@ -1,37 +1,42 @@
-import React, { useState, useEffect } from "react";
-import Header from "../common/Header";
-import Footer from "../common/Footer";
-import { Link } from "react-router-dom";
-import { usePostContext } from "./PostContext";
+
+import React, { useState, useEffect } from 'react';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { usePostContext } from './PostContext';
 
 export default function BoardMain() {
     const { posts } = usePostContext(); // posts를 가져옴
     const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
-    const postsPerPage = 1; // 한 페이지에 최대 게시글 수
+    const location = useLocation(); // 현재 경로의 정보를 가져옴
+    const { page } = useParams(); // page 변수를 가져옴
 
-    // 페이지네이션 계산
-    const indexOfLastPost = currentPage * postsPerPage; // 마지막 게시글 인덱스
-    const indexOfFirstPost = indexOfLastPost - postsPerPage; // 첫번째 게시글 인덱스
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost); // 현재 페이지에 맞는 게시글
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const pageParam = queryParams.get('page'); // 쿼리 파라미터에서 페이지 번호를 가져옴
+        if (pageParam) {
+            setCurrentPage(Number(pageParam)); // 상태 업데이트
+        } else if (page) {
+            setCurrentPage(Number(page)); // URL 파라미터에서 페이지 번호가 있으면 상태 업데이트
+        }
+    }, [location.search, page]);
 
-    const totalPages = Math.ceil(posts.length / postsPerPage); // 총 페이지 수 계산
+    // 현재 페이지의 게시글 가져오기
+    const currentPosts = posts[currentPage] || [];
 
     // 페이지 변경 함수
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber); // 페이지 상태 변경
     };
 
-    useEffect(() => {
-        // 페이지가 바뀔 때마다 자동으로 갱신되도록 설정
-        setCurrentPage(1);  // 처음 페이지로 돌아가게 할 수도 있습니다. 필요 시 조정
-    }, [posts]);
-
     return (
         <div>
             <Header />
             <div className="flex items-center justify-end pr-[15.4rem] pt-6">
                 <button className="text-xl font-bold hover:text-gray-500 transition duration-500">
-                    <Link to="/allBoard/BoardInput">게시글 작성</Link>
+                    <Link to={`/allBoard/BoardInput?page=${currentPage}`}>
+                        게시글 작성
+                    </Link>
                 </button>
             </div>
 
@@ -45,7 +50,10 @@ export default function BoardMain() {
                         ) : (
                             currentPosts.map((post) => (
                                 <div key={post.id} className="border-b py-4 px-4 m-4 ml-[51rem] bg-gray-400 w-[60rem]">
-                                    <Link to={`/allBoard/BoardDetail/${post.id}`} className="font-bold text-xl">
+                                    <Link
+                                        to={`/allBoard/BoardDetail/${currentPage}/${post.id}`} // 현재 페이지 번호와 게시글 ID 전달
+                                        className="font-bold text-xl"
+                                    >
                                         {post.title}
                                     </Link>
                                     {post.file && <div className="text-lg mb-2">{post.file.name}</div>}
@@ -61,13 +69,15 @@ export default function BoardMain() {
             <div className="flex justify-center items-center">
                 <div className="flex space-x-2">
                     {/* 페이지 번호 버튼 1~5 고정 */}
-                    {[...Array(5).keys()].map((page) => (
+                    {[...Array(5).keys()].map((pageNum) => (
                         <button
-                            key={page + 1}
-                            onClick={() => handlePageChange(page + 1)} // 페이지 번호 클릭 시, 페이지 상태 변경
-                            className={`bg-emerald-500 text-black px-4 py-2 rounded mb-6 hover:text-white transition duration-300 ${currentPage === page + 1 ? 'bg-emerald-700' : ''}`}
+                            key={pageNum + 1}
+                            onClick={() => handlePageChange(pageNum + 1)} // 페이지 상태 변경
+                            className={`bg-emerald-500 text-black px-4 py-2 rounded mb-6 hover:text-white transition duration-300 ${
+                                currentPage === pageNum + 1 ? 'bg-emerald-700' : ''
+                            }`}
                         >
-                            {page + 1}
+                            {pageNum + 1}
                         </button>
                     ))}
                 </div>
@@ -77,3 +87,4 @@ export default function BoardMain() {
         </div>
     );
 }
+

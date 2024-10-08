@@ -87,11 +87,11 @@ const root = createBrowserRouter([
     ),
   },
   {
-    path: "/allBoard/BoardDetail/:id",
+    path: "/allBoard/BoardDetail/:page/:id",
     element: (
-      <Suspense fallback={Loading}>
-        <BoardDetail />
-      </Suspense>
+        <Suspense fallback={Loading}>
+            <BoardDetail />
+        </Suspense>
     ),
   },
   {
