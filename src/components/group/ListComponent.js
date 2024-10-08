@@ -28,7 +28,7 @@ const ListComponent = ({ isOnline }) => {
   return (
     <>
       {isOnline
-        ? onlineGroups.dtoList.map((group) => (
+        ? onlineGroups.map((group) => (
             <div
               key={group.id}
               className="flex w-full p-2 mb-4 rounded-lg bg-gray-50 shadow-lg"
@@ -43,18 +43,18 @@ const ListComponent = ({ isOnline }) => {
                 </div>
               </div>
               <div className="h-20">
-                <p className="px-2 pb-1 text-base">소모임명</p>
-                <p className="px-2 pb-1 text-sm">소모임한줄소개</p>
+                <p className="px-2 pb-1 text-base">{group.title}</p>
+                <p className="px-2 pb-1 text-sm">{group.country}</p>
                 <div className="flex">
                   <div className="px-2 py-1 bg-emerald-500 text-xs text-white rounded-2xl">
-                    소모임 카테고리
+                    {group.category}
                   </div>
-                  <div className="px-2 py-1 text-xs">소모임 회원수</div>
+                  <div className="px-2 py-1 text-xs">{group.createDate}</div>
                 </div>
               </div>
             </div>
           ))
-        : offlineGroups.dtoList.map((group) => (
+        : offlineGroups.map((group) => (
             <div
               key={group.id}
               className="flex w-full p-2 mb-4 rounded-lg bg-gray-50 shadow-lg"
@@ -69,13 +69,13 @@ const ListComponent = ({ isOnline }) => {
                 </div>
               </div>
               <div className="h-20">
-                <p className="px-2 pb-1 text-base">소모임명</p>
-                <p className="px-2 pb-1 text-sm">소모임한줄소개</p>
+                <p className="px-2 pb-1 text-base">{group.title}</p>
+                <p className="px-2 pb-1 text-sm">{group.country}</p>
                 <div className="flex">
                   <div className="px-2 py-1 bg-emerald-500 text-xs text-white rounded-2xl">
-                    소모임 카테고리
+                    {group.category}
                   </div>
-                  <div className="px-2 py-1 text-xs">소모임 회원수</div>
+                  <div className="px-2 py-1 text-xs">{group.createDate}</div>
                 </div>
               </div>
             </div>

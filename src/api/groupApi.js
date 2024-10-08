@@ -7,9 +7,10 @@ const prefix = `${API_SERVER_HOST}/api/group`;
 
 // 소모임 생성하기(파일첨부)
 export const groupRegister = async (group) => {
-  const header = { headers: { "Content-Type": "multipart/form-data" } };
+  // const header = { headers: { "Content-Type": "multipart/form-data" } };
   // 경로 뒤 '/' 참고해서 주의하기!!!!
-  const res = await axiosInstance.post(`${prefix}/`, group, header);
+  // const res = await axiosInstance.post(`${prefix}/`, group, header);
+  const res = await axiosInstance.post(`${prefix}/`, group);
   return res.data;
 };
 

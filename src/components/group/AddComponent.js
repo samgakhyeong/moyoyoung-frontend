@@ -35,16 +35,16 @@ const AddComponent = () => {
     const files = uploadRef.current.files;
 
     // 1.유효성검사
-    if (
-      !group.checkOnline ||
-      !group.country ||
-      !group.category ||
-      !group.title ||
-      !group.content
-    ) {
-      setErrorMsg(true);
-      return;
-    }
+    // if (
+    //   !group.checkOnline ||
+    //   !group.country ||
+    //   !group.category ||
+    //   !group.title ||
+    //   !group.content
+    // ) {
+    //   setErrorMsg(true);
+    //   return;
+    // }
 
     // 2.유효성 통과시 데이터 저장하기
     const formData = new FormData();
@@ -57,10 +57,18 @@ const AddComponent = () => {
 
     setFetching(true); // loading 띄움
 
-    groupRegister(formData).then((data) => {
-      setFetching(false); // loading 닫음
-      setResult(data.result);
-    });
+    console.log("======================");
+    console.log(formData);
+
+    groupRegister(formData)
+      .then((data) => {
+        setFetching(false); // loading 닫음
+        setResult(data.result);
+      })
+      .catch((error) => {
+        setFetching(false); // 에러 발생시 로딩 닫음
+        setErrorMsg("소모임 생성 중 오류가 발생했습니다.");
+      });
   };
 
   const closeModal = () => {
@@ -80,7 +88,7 @@ const AddComponent = () => {
       ) : (
         <></>
       )}
-      {errorMsg ? (
+      {/* {errorMsg ? (
         <ResultModal
           title={"ERROR"}
           content={"모든 항목 필수 입력사항입니다. 내용을 입력해주세요."}
@@ -88,7 +96,7 @@ const AddComponent = () => {
         />
       ) : (
         <></>
-      )}
+      )} */}
       {/* select 선택라인 */}
       <div className="mb-5">
         <label className="inline-block w-full p-2 me-5 font-bold text-gray-600 bg-gray-50">
