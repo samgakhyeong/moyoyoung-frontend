@@ -32,11 +32,10 @@ const Header = () => {
 
           <div className="w-36 relative">
             <div className="relative group">
-              <div className="cursor-pointer text-lg font-medium text-gray-600 hover:text-emerald-500 transition-colors duration-300">
+              <div className="cursor-pointer text-lg font-medium text-gray-600 hover:text-emerald-500 transition-colors duration-500">
                 임시메뉴
               </div>
-              {/* 마우스를 올리면 하위 메뉴가 보이도록 수정 */}
-              <ul className="absolute left-0 mt-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 bg-white shadow-lg rounded-md py-2 w-full z-10 transform translate-y-2">
+              <ul className="absolute left-0 mt-2 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 bg-white shadow-lg rounded-md py-2 w-full z-10 transform translate-y-2">
                 <li className="px-4 py-2 hover:bg-gray-100">
                   <Link to="/group">소모임</Link>
                 </li>
@@ -49,7 +48,7 @@ const Header = () => {
 
           <div className="w-2/5 h-full relative">
             <div className="relative">
-              <select className="cursor-pointer text-base font-medium text-gray-600 duration-300 h-full px-4 py-2 border-b border-gray-300 focus:outline-none focus:ring-emerald-500 w-4/5">
+              <select className="cursor-pointer text-base font-medium text-gray-600 duration-500 h-full px-4 py-2 border-b border-gray-300 focus:outline-none focus:ring-emerald-500 w-4/5">
                 <option value="" disabled>
                   카테고리를 선택하세요.
                 </option>
@@ -61,16 +60,12 @@ const Header = () => {
               </select>
             </div>
           </div>
-          {/* <div className="w-36 flex items-center text-emerald-500 font-bold text-xl rounded-md">
-            <Link to="/allBoard">임시 게시판</Link>
-          </div> */}
-
           <div className="w-2/5 h-12 flex items-center justify-end rounded-md">
             <form className="w-full h-full flex items-center">
               <input
                 type="text"
                 placeholder="검색어를 입력하세요."
-                className="w-full h-10 px-4 py-2 text-gray-700 rounded-l-full focus:outline-none border border-emerald-500"
+                className="w-full h-10 px-4 py-2 text-gray-600 rounded-l-full focus:outline-none border border-emerald-500"
               />
               <button
                 type="submit"
@@ -80,7 +75,7 @@ const Header = () => {
               </button>
             </form>
           </div>
-          <div className="w-20 h-12 flex items-center justify-end text-slate-500 text-sm font-semibold rounded-md cursor-pointer hover:text-emerald-500 transition-colors duration-300">
+          <div className="w-20 h-12 flex items-center justify-end text-slate-500 text-sm font-semibold rounded-md cursor-pointer hover:text-emerald-500 transition-colors duration-500">
             {loggedIn ? (
               <p onClick={handleLogout} title={username}>
                 로그아웃

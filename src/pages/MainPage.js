@@ -8,8 +8,10 @@ const MainPage = () => {
   return (
     <BasicLayout>
       <div className="flex flex-row-reverse w-full pt-8">
-        <button className="w-1/4 p-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-300 cursor-pointer">
-          <Link to="/group/add">소모임 개설하기</Link>
+        <button className="w-1/4 p-2 bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-500 cursor-pointer">
+          <Link to="/group/add" className="inline-block w-full h-full">
+            소모임 개설하기
+          </Link>
         </button>
       </div>
       <div className="flex justify-between w-full h-full py-8">
@@ -19,7 +21,7 @@ const MainPage = () => {
           </h1>
           <div className="w-full">
             {/* 온라인 소모임 리스트 영역 */}
-            <ListComponent />
+            <ListComponent isOnline={true} />
           </div>
         </div>
         <div className="w-1/2 h-full p-4 bg-white shadow-lg">
@@ -28,7 +30,7 @@ const MainPage = () => {
           </h1>
           <div className="w-full">
             {/* 오프라인 소모임 리스트 영역 */}
-            <ListComponent />
+            <ListComponent isOnline={false} />
           </div>
         </div>
       </div>

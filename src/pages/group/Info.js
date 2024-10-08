@@ -7,7 +7,7 @@ const Info = () => {
   const navigate = useNavigate();
   const handleClickMeetingAdd = useCallback(() => {
     navigate({ pathname: "meetingAdd" });
-  });
+  }, []);
 
   return (
     <div className="w-full">
@@ -58,7 +58,7 @@ const Info = () => {
         </div>
         <div className="w-full my-10">
           <button
-            className="block w-1/4 p-2 m-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-300 cursor-pointer"
+            className="block w-1/4 p-2 m-auto bg-emerald-500 hover:bg-emerald-600 text-white font-semibold rounded-full transition-colors duration-500 cursor-pointer"
             onClick={handleClickMeetingAdd}
           >
             정기모임 만들기
