@@ -134,22 +134,22 @@ const AddComponent = () => {
           <option value="" selected disabled>
             지역을 선택하세요.
           </option>
-          <option value="seoul">서울</option>
-          <option value="busan">부산</option>
-          <option value="daegu">대구 </option>
-          <option value="incheon">인천</option>
-          <option value="gwangju">광주</option>
-          <option value="daejeon">대전</option>
-          <option value="ulsan">울산</option>
-          <option value="gangwon">강원</option>
-          <option value="gyeonggi">경기</option>
-          <option value="gyeongnam">경남</option>
-          <option value="gyeongbuk">경북</option>
-          <option value="jeonnam">전남</option>
-          <option value="jeonbuk">전북</option>
-          <option value="jeju">제주</option>
-          <option value="chungnam">충남</option>
-          <option value="chungbuk">충북</option>
+          <option value="서울">서울</option>
+          <option value="부산">부산</option>
+          <option value="대구">대구 </option>
+          <option value="인천">인천</option>
+          <option value="광주">광주</option>
+          <option value="대전">대전</option>
+          <option value="울산">울산</option>
+          <option value="강원">강원</option>
+          <option value="경기">경기</option>
+          <option value="경남">경남</option>
+          <option value="경북">경북</option>
+          <option value="전남">전남</option>
+          <option value="전북">전북</option>
+          <option value="제주">제주</option>
+          <option value="충남">충남</option>
+          <option value="충북">충북</option>
         </select>
       </div>
       <div className="mb-5">
@@ -165,11 +165,11 @@ const AddComponent = () => {
           <option value="" selected disabled>
             카테고리를 선택하세요.
           </option>
-          <option value="hobby">취미/레저</option>
-          <option value="culture">문화/예술</option>
-          <option value="social">사회활동/인맥</option>
-          <option value="creative">창의/제작</option>
-          <option value="learning">학습/자기계발</option>
+          <option value="취미/레저">취미/레저</option>
+          <option value="문화/예술">문화/예술</option>
+          <option value="사회활동/인맥">사회활동/인맥</option>
+          <option value="창의/제작">창의/제작</option>
+          <option value="학습/자기계발">학습/자기계발</option>
         </select>
       </div>
 

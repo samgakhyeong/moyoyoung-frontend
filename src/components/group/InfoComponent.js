@@ -1,6 +1,7 @@
 // 생성자 : Haein
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { getImage } from "../../api/mainApi";
 import { getOneGroup } from "../../api/groupApi";
 import { API_SERVER_HOST } from "../../api/groupApi";
 import FetchingModal from "../common/FetchingModal";
@@ -13,6 +14,7 @@ const InfoComponent = ({ id }) => {
   const navigate = useNavigate();
 
   const [group, setGroup] = useState(initState);
+  // const [groupImage, setGroupImage] = useState("");
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
@@ -23,6 +25,12 @@ const InfoComponent = ({ id }) => {
       console.log("===========data===========");
       console.log(data);
     });
+
+    // getImage(id).then((data) => {
+    //   console.log("============image=============");
+    //   console.log(data);
+    //   setGroupImage(data);
+    // });
   }, [id]);
 
   return (
@@ -32,7 +40,7 @@ const InfoComponent = ({ id }) => {
         <img
           className="w-full h-full"
           src="https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg"
-          // src={`${host}/api/group/view/${id}`}
+          // src={groupImage}
           alt="groupProfileImage"
         />
       </div>
