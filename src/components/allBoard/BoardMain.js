@@ -7,7 +7,6 @@ import { usePostContext } from "./PostContext";
 export default function BoardMain() {
   const { posts } = usePostContext(); // posts를 가져옴
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
-
   const location = useLocation(); // 현재 경로의 정보를 가져옴
   const { page } = useParams(); // page 변수를 가져옴
 
