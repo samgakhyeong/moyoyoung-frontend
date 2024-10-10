@@ -1,4 +1,4 @@
-// Haein
+// 생성자 : Haein
 
 const ResultModal = ({ title, content, callbackFn }) => {
   return (
