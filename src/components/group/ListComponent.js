@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { getGroupList } from "../../api/mainApi";
+import { getImage } from "../../api/mainApi";
 import { useNavigate } from "react-router-dom";
 
 const initState = {
@@ -21,11 +22,14 @@ const ListComponent = ({ isOnline }) => {
 
     getGroupList().then((data) => {
       console.log(data);
-      // setServerData(data);
       setOnlineGroups(data.onlineGroups || []);
       setOfflineGroups(data.offlineGroups || []);
       setFetching(false);
     });
+
+    // getImage(id).then((data) => {
+    //   console.log(data);
+    // });
   }, []);
 
   return (

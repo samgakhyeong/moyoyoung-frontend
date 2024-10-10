@@ -9,3 +9,8 @@ export const getGroupList = async () => {
   const res = await axiosInstance.get(`${prefix}/`);
   return res.data;
 };
+
+export const getImage = async (id) => {
+  const res = await axiosInstance.get(`${prefix}/getImage/${id}`);
+  return res.data;
+};
