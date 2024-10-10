@@ -149,6 +149,7 @@ export default function FindPassWord() {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 required
+                disabled={!nameChecked}
                 className="rounded-md py-2 px-2 mr-10 w-full ml-0 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-200"
               />
             </div>
@@ -163,6 +164,7 @@ export default function FindPassWord() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
+                disabled={!nameChecked}
                 className="rounded-md py-2 px-2 mr-10 w-full ml-0 text-gray-900 shadow-sm ring-1 ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-green-200"
               />
             </div>
@@ -170,7 +172,8 @@ export default function FindPassWord() {
 
           <button
             onClick={handleResetPassword}
-            className="py-2 mb-5 rounded-md bg-green-200 hover:bg-green-300 px-3 text-sm font-semibold leading-6 text-gray-700"
+            disabled={!nameChecked}
+            className={`${nameChecked?"bg-green-200 hover:bg-green-300":"bg-gray-200"} py-2 mb-5 rounded-md px-3 text-sm font-semibold leading-6 text-gray-700`}
           >
             비밀번호 재설정
           </button>
