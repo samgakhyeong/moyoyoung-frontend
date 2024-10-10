@@ -2,18 +2,30 @@ import React, { useState, useEffect } from "react";
 import Header from "../common/Header";
 import Footer from "../common/Footer";
 import { Link, useLocation, useParams } from "react-router-dom";
-import { usePostContext } from "./PostContext";
+import boardApi from '../../api/allBoardApi';
 
 export default function BoardMain() {
-  const { posts } = usePostContext(); // posts를 가져옴
+  const [posts, setPosts] = useState([]); // 게시글 데이터 상태
   const [currentPage, setCurrentPage] = useState(1); // 현재 페이지 상태
-
   const location = useLocation(); // 현재 경로의 정보를 가져옴
-  const { page } = useParams(); // page 변수를 가져옴
+  const { page } = useParams(); // 페이지 변수를 가져옴
+
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const data = await boardApi.listPosts(currentPage); // boardApi에서 listPosts 호출
+        setPosts(data); // 상태에 저장
+      } catch (error) {
+        console.error("Error fetching posts:", error); // 에러 로그 출력
+      }
+    };
+
+    fetchPosts(); // 컴포넌트 마운트 시 데이터 가져오기
+  }, [currentPage]); // currentPage가 변경될 때마다 데이터 가져오기
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const pageParam = queryParams.get("page"); // 쿼리 파라미터에서 페이지 번호를 가져옴
+    const pageParam = queryParams.get("page"); // 쿼리 파라미터에서 페이지 번호 가져오기
     if (pageParam) {
       setCurrentPage(Number(pageParam)); // 상태 업데이트
     } else if (page) {
@@ -22,7 +34,7 @@ export default function BoardMain() {
   }, [location.search, page]);
 
   // 현재 페이지의 게시글 가져오기
-  const currentPosts = posts[currentPage] || [];
+  const currentPosts = posts || [];
 
   // 페이지 변경 함수
   const handlePageChange = (pageNumber) => {
@@ -62,7 +74,7 @@ export default function BoardMain() {
                   )}
 
                   <Link
-                    to={`/allBoard/BoardDetail/${currentPage}/${post.id}`} // 현재 페이지 번호와 게시글 ID 전달
+                    to={`/allBoard/posts/${post.id}`} // 현재 페이지 번호와 게시글 ID 전달
                     className="font-bold text-xl"
                   >
                     {index + 1}번째: {post.title} {/* 번호와 제목 */}

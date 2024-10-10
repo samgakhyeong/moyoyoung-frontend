@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { usePostContext } from './PostContext';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
+import getPostById from '../../api/allBoardApi';
 
 export default function BoardDetail() {
     const { posts, editedPosts, updateEditedPost } = usePostContext();
