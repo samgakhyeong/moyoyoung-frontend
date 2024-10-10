@@ -5,24 +5,21 @@ import axiosInstance from "../axiosInstance";
 export const API_SERVER_HOST = "http://localhost:8080";
 const prefix = `${API_SERVER_HOST}/api/group`;
 
-// 소모임 생성하기
-export const register = async (groupObj) => {
-  const res = await axiosInstance.post(`${prefix}/`, groupObj);
+// 소모임 생성하기(파일첨부)
+export const groupRegister = async (group) => {
+  // const header = { headers: { "Content-Type": "multipart/form-data" } };
+  // 경로 뒤 '/' 참고해서 주의하기!!!!
+  // const res = await axiosInstance.post(`${prefix}/`, group, header);
+  const res = await axiosInstance.post(`${prefix}/`, group);
   return res.data;
 };
 
 // 정기모임 생성하기
-// 백앤드에 없음?
+// ********************** 백앤드에 없음
 
 // 소모임 데이터 가져오기
 export const getOneGroup = async (id) => {
   const res = await axiosInstance.get(`${prefix}/${id}`);
-  return res.data;
-};
-
-// 소모임 리스트 데이터 가져오기
-export const getListGroup = async () => {
-  const res = await axiosInstance.get(`${prefix}/list`);
   return res.data;
 };
 
