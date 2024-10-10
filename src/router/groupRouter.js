@@ -4,20 +4,12 @@ import { lazy, Suspense } from "react";
 
 const Loading = <div>Loading···</div>;
 
-const GroupInfo = lazy(() => import("../pages/group/Info"));
 const GroupAdd = lazy(() => import("../pages/group/AddPage"));
+const GroupInfo = lazy(() => import("../pages/group/InfoPage"));
 const MeetingAdd = lazy(() => import("../pages/group/MeetingAddPage"));
 
 const groupRouter = () => {
   return [
-    {
-      path: "",
-      element: (
-        <Suspense fallback={Loading}>
-          <GroupInfo />
-        </Suspense>
-      ),
-    },
     {
       path: "add",
       element: (
@@ -27,10 +19,18 @@ const groupRouter = () => {
       ),
     },
     {
-      path: "meetingAdd",
+      path: "meetingAdd/:id",
       element: (
         <Suspense fallback={Loading}>
           <MeetingAdd />
+        </Suspense>
+      ),
+    },
+    {
+      path: "read/:id",
+      element: (
+        <Suspense fallback={Loading}>
+          <GroupInfo />
         </Suspense>
       ),
     },

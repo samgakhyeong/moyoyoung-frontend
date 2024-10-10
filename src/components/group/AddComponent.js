@@ -1,6 +1,7 @@
 // Haein
 import { useRef, useState } from "react";
 import { groupRegister } from "../../api/groupApi";
+import { useNavigate } from "react-router-dom";
 import FetchingModal from "../common/FetchingModal";
 import ResultModal from "../common/ResultModal";
 
@@ -10,10 +11,12 @@ const initState = {
   category: "", // 모임카테고리
   title: "", // 모임명
   content: "", // 모임소개글
-  files: [], // 모임프로필사진
+  file: [], // 모임프로필사진
 };
 
 const AddComponent = () => {
+  const navigate = useNavigate();
+
   const [group, setGroup] = useState({ ...initState });
   const uploadRef = useRef();
 
@@ -48,7 +51,7 @@ const AddComponent = () => {
 
     // 2.유효성 통과시 데이터 저장하기
     const formData = new FormData();
-    formData.append("files", files[0]);
+    formData.append("file", files[0]);
     formData.append("checkOnline", group.checkOnline);
     formData.append("country", group.country);
     formData.append("category", group.category);
@@ -56,8 +59,6 @@ const AddComponent = () => {
     formData.append("content", group.content);
 
     setFetching(true); // loading 띄움
-
-    console.log("======================");
     console.log(formData);
 
     groupRegister(formData)
@@ -67,13 +68,18 @@ const AddComponent = () => {
       })
       .catch((error) => {
         setFetching(false); // 에러 발생시 로딩 닫음
-        setErrorMsg("소모임 생성 중 오류가 발생했습니다.");
+        // setErrorMsg(true);
       });
   };
 
   const closeModal = () => {
     setResult(null);
-    setErrorMsg(null);
+    // setErrorMsg(null);
+
+    // 메인으로 이동
+    navigate({
+      pathname: "/",
+    });
   };
 
   return (
@@ -82,7 +88,7 @@ const AddComponent = () => {
       {result ? (
         <ResultModal
           title={"SUCESS"}
-          content={`${result}번 소모임생성완료`}
+          content={`${result}번 소모임 생성완료`}
           callbackFn={closeModal}
         />
       ) : (
@@ -128,22 +134,22 @@ const AddComponent = () => {
           <option value="" selected disabled>
             지역을 선택하세요.
           </option>
-          <option value="seoul">서울</option>
-          <option value="busan">부산</option>
-          <option value="daegu">대구 </option>
-          <option value="incheon">인천</option>
-          <option value="gwangju">광주</option>
-          <option value="daejeon">대전</option>
-          <option value="ulsan">울산</option>
-          <option value="gangwon">강원</option>
-          <option value="gyeonggi">경기</option>
-          <option value="gyeongnam">경남</option>
-          <option value="gyeongbuk">경북</option>
-          <option value="jeonnam">전남</option>
-          <option value="jeonbuk">전북</option>
-          <option value="jeju">제주</option>
-          <option value="chungnam">충남</option>
-          <option value="chungbuk">충북</option>
+          <option value="서울">서울</option>
+          <option value="부산">부산</option>
+          <option value="대구">대구 </option>
+          <option value="인천">인천</option>
+          <option value="광주">광주</option>
+          <option value="대전">대전</option>
+          <option value="울산">울산</option>
+          <option value="강원">강원</option>
+          <option value="경기">경기</option>
+          <option value="경남">경남</option>
+          <option value="경북">경북</option>
+          <option value="전남">전남</option>
+          <option value="전북">전북</option>
+          <option value="제주">제주</option>
+          <option value="충남">충남</option>
+          <option value="충북">충북</option>
         </select>
       </div>
       <div className="mb-5">
@@ -159,11 +165,11 @@ const AddComponent = () => {
           <option value="" selected disabled>
             카테고리를 선택하세요.
           </option>
-          <option value="hobby">취미/레저</option>
-          <option value="culture">문화/예술</option>
-          <option value="social">사회활동/인맥</option>
-          <option value="creative">창의/제작</option>
-          <option value="learning">학습/자기계발</option>
+          <option value="취미/레저">취미/레저</option>
+          <option value="문화/예술">문화/예술</option>
+          <option value="사회활동/인맥">사회활동/인맥</option>
+          <option value="창의/제작">창의/제작</option>
+          <option value="학습/자기계발">학습/자기계발</option>
         </select>
       </div>
 
@@ -174,7 +180,7 @@ const AddComponent = () => {
         </label>
         <input
           type={"file"}
-          name="files"
+          name="file"
           ref={uploadRef}
           multiple={false}
           className="w-full h-full p-2 border-b border-gray-200 focus:outline-none"
