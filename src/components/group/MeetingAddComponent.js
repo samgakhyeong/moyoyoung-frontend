@@ -3,21 +3,21 @@ import { useEffect, useState } from "react";
 import FetchingModal from "../common/FetchingModal";
 import ResultModal from "../common/ResultModal";
 import { useNavigate } from "react-router-dom";
-import { getOneGroup } from "../../api/groupApi";
+import { getGroupDetails } from "../../api/groupApi";
 import { meetingRegister } from "../../api/meetingApi";
 
 const initGroup = {
   title: "",
 };
 const initState = {
+  groupId: "",
   title: "",
   content: "",
-  meetingDate: null,
+  meetingDate: "",
 };
 
 const MeetingAddComponent = ({ id }) => {
   const navigate = useNavigate();
-
   const [fetching, setFetching] = useState(false);
   const [group, setGroup] = useState({ ...initGroup });
   const [meeting, setMeeting] = useState({ ...initState });
@@ -25,8 +25,8 @@ const MeetingAddComponent = ({ id }) => {
 
   useEffect(() => {
     setFetching(true);
-    getOneGroup(id).then((data) => {
-      setGroup(data);
+    getGroupDetails(id).then((data) => {
+      setGroup(data.group);
       setFetching(false);
     });
   }, [id]);
@@ -41,21 +41,26 @@ const MeetingAddComponent = ({ id }) => {
   };
 
   const handleClickAdd = (e) => {
-    const formData = new FormData();
-    formData.append("title", meeting.title);
-    formData.append("content", meeting.content);
-    formData.append("meetingDate", meeting.meetingDate);
-
+    const meetingData = {
+      groupId: id,
+      title: meeting.title,
+      content: meeting.content,
+      meetingDate: meeting.meetingDate,
+    };
+    // JSON.stringify를 통해 JSON 문자열로 변환
+    const jsonData = JSON.stringify(meetingData);
     setFetching(true); // loading 띄움
-    console.log(formData);
+    console.log(jsonData); // 전송할 JSON 데이터 확인
 
-    meetingRegister(formData)
+    // Axios를 사용하여 POST 요청
+    meetingRegister(jsonData)
       .then((data) => {
         setFetching(false); // loading 닫음
-        setResult(data.result);
+        setResult(data);
       })
       .catch((error) => {
         setFetching(false); // 에러 발생시 loading 닫음
+        console.error("Error during meeting register:", error);
       });
   };
 
@@ -74,7 +79,7 @@ const MeetingAddComponent = ({ id }) => {
       {result ? (
         <ResultModal
           title={"SUCESS"}
-          content={`${result}번 정기모임 생성완료`}
+          content={`${result.id}번 정기모임 생성완료`}
           callbackFn={closeModal}
         />
       ) : (

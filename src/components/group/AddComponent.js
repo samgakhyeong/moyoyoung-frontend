@@ -1,4 +1,4 @@
-// Haein
+// 생성자 : Haein
 import { useRef, useState } from "react";
 import { groupRegister } from "../../api/groupApi";
 import { useNavigate } from "react-router-dom";
@@ -38,16 +38,10 @@ const AddComponent = () => {
     const files = uploadRef.current.files;
 
     // 1.유효성검사
-    // if (
-    //   !group.checkOnline ||
-    //   !group.country ||
-    //   !group.category ||
-    //   !group.title ||
-    //   !group.content
-    // ) {
-    //   setErrorMsg(true);
-    //   return;
-    // }
+    if (!group.country || !group.category || !group.title || !group.content) {
+      setErrorMsg(true);
+      return;
+    }
 
     // 2.유효성 통과시 데이터 저장하기
     const formData = new FormData();
@@ -68,18 +62,19 @@ const AddComponent = () => {
       })
       .catch((error) => {
         setFetching(false); // 에러 발생시 로딩 닫음
-        // setErrorMsg(true);
       });
   };
 
   const closeModal = () => {
     setResult(null);
-    // setErrorMsg(null);
+    setErrorMsg(null);
 
-    // 메인으로 이동
-    navigate({
-      pathname: "/",
-    });
+    // 정상적인 저장일 경우 메인화면으로 이동
+    if (!errorMsg) {
+      navigate({
+        pathname: "/",
+      });
+    }
   };
 
   return (
@@ -94,7 +89,7 @@ const AddComponent = () => {
       ) : (
         <></>
       )}
-      {/* {errorMsg ? (
+      {errorMsg ? (
         <ResultModal
           title={"ERROR"}
           content={"모든 항목 필수 입력사항입니다. 내용을 입력해주세요."}
@@ -102,7 +97,7 @@ const AddComponent = () => {
         />
       ) : (
         <></>
-      )} */}
+      )}
       {/* select 선택라인 */}
       <div className="mb-5">
         <label className="inline-block w-full p-2 me-5 font-bold text-gray-600 bg-gray-50">
