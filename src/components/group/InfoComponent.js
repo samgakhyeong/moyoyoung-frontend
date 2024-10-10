@@ -1,36 +1,36 @@
 // 생성자 : Haein
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getImage } from "../../api/mainApi";
-import { getOneGroup } from "../../api/groupApi";
-import { API_SERVER_HOST } from "../../api/groupApi";
+import { getGroupDetails } from "../../api/groupApi";
 import FetchingModal from "../common/FetchingModal";
 
 const initState = {};
-
-const host = API_SERVER_HOST;
 
 const InfoComponent = ({ id }) => {
   const navigate = useNavigate();
 
   const [group, setGroup] = useState(initState);
-  // const [groupImage, setGroupImage] = useState("");
+  const [metting, setMeeting] = useState({});
+  const [groupImage, setGroupImage] = useState({});
   const [fetching, setFetching] = useState(false);
 
   useEffect(() => {
     setFetching(true);
-    getOneGroup(id).then((data) => {
-      setGroup(data);
-      setFetching(false);
-      console.log("===========data===========");
-      console.log(data);
-    });
+    getGroupDetails(id)
+      .then((data) => {
+        setGroup(data.group);
+        setMeeting(data.meeting);
+      })
+      .finally(() => {
+        setFetching(false);
+      });
 
-    // getImage(id).then((data) => {
-    //   console.log("============image=============");
-    //   console.log(data);
-    //   setGroupImage(data);
-    // });
+    getImage(id).then((imageData) => {
+      const blob = new Blob([imageData], { type: "image/png" }); // Blob 객체 생성 (바이너리 데이터를 받았다고 가정)
+      const imageUrl = URL.createObjectURL(blob); // Blob URL 생성
+      setGroupImage(imageUrl);
+    });
   }, [id]);
 
   return (
@@ -39,8 +39,7 @@ const InfoComponent = ({ id }) => {
       <div className="w-full h-60">
         <img
           className="w-full h-full"
-          src="https://health.chosun.com/site/data/img_dir/2023/07/17/2023071701753_0.jpg"
-          // src={groupImage}
+          src={groupImage}
           alt="groupProfileImage"
         />
       </div>
@@ -70,10 +69,43 @@ const InfoComponent = ({ id }) => {
         </div>
         <div className="w-full mb-5">
           <h1 className="w-full p-2 mb-3 border-b bg-gray-100 font-semibold text-lg text-gray-600">
-            정기모임 게시글
+            정기모임
           </h1>
-          <div className="w-full px-2">
-            <div>정기모임 게시판 글이 들어가는 영역입니다.</div>
+          <div className="w-full">
+            <div className="w-full text-sm p-5 border rounded bg-white shadow-md">
+              <dl className="mb-3 border-b-2">
+                <dt className="text-gray-400 font-semibold border-s-4 border-emerald-500 ps-2">
+                  모임 작성일자
+                </dt>
+                <dd className="px-4 py-3 text-gray-600 font-semibold">
+                  {metting.createDate}
+                </dd>
+              </dl>
+              <dl className="mb-3 border-b-2">
+                <dt className="text-gray-400 font-semibold border-s-4 border-emerald-500 ps-2">
+                  정기모임 이름
+                </dt>
+                <dd className="px-4 py-3 text-gray-600 font-semibold">
+                  {metting.title}
+                </dd>
+              </dl>
+              <dl className="mb-3 border-b-2">
+                <dt className="text-gray-400 font-semibold border-s-4 border-emerald-500 ps-2">
+                  정기모임 내용
+                </dt>
+                <dd className="px-4 py-3 text-gray-600 font-semibold">
+                  {metting.content}
+                </dd>
+              </dl>
+              <dl>
+                <dt className="text-gray-400 font-semibold border-s-4 border-emerald-500 ps-2">
+                  정기모임 일시
+                </dt>
+                <dd className="px-4 py-3 text-gray-600 font-semibold">
+                  {metting.meetingDate}
+                </dd>
+              </dl>
+            </div>
           </div>
         </div>
         <div className="w-full my-10">

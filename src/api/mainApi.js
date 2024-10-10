@@ -1,4 +1,4 @@
-// Haein
+// 생성자 : Haein
 import axiosInstance from "../axiosInstance";
 
 export const API_SERVER_HOST = "http://localhost:8080";
@@ -11,6 +11,9 @@ export const getGroupList = async () => {
 };
 
 export const getImage = async (id) => {
-  const res = await axiosInstance.get(`${prefix}/getImage/${id}`);
+  // { responseType: "blob" } => 바이너리 데이터를 blob으로 처리
+  const res = await axiosInstance.get(`${prefix}/getImage/${id}`, {
+    responseType: "blob",
+  });
   return res.data;
 };
