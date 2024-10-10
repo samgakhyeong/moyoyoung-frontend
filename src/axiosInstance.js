@@ -16,8 +16,6 @@ axiosInstance.interceptors.request.use((config) => {
     // const token = state.auth.token;
 
 
-
-
     const excludedUrls = ['/auth/token'];
 
 

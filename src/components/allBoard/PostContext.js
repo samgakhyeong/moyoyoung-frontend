@@ -60,7 +60,6 @@ export const PostProvider = ({ children }) => {
                 updatedAt: createdAt, // 처음 작성된 시간
             });
 
-
             savePostsToLocalStorage(newPosts); // 로컬 스토리지에 저장
             alert("게시글이 성공적으로 작성되었습니다.");
             navigate(`/allBoard/BoardMain?page=${page}`);
@@ -86,7 +85,6 @@ export const PostProvider = ({ children }) => {
                     updatedAt: new Date().toISOString(),
                 };
             }
-
 
             savePostsToLocalStorage(newPosts); // 수정 후 로컬 스토리지에 저장
             return newPosts;

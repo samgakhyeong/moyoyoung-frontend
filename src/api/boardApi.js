@@ -4,7 +4,6 @@ import axiosInstance from "../axiosInstance";
 export const API_SERVER_HOST = 'http://localhost:8080'; // 백엔드 서버 URL
 const prefix = `${API_SERVER_HOST}/api/allBoard`;
 
-
 const boardApi = {
   createPost: async (title, content, myUserId, files) => {
     const formData = new FormData();
@@ -12,7 +11,6 @@ const boardApi = {
     formData.append('content', content);
     formData.append('myUserId', myUserId);
     files.forEach(file => formData.append('files', file));
-
 
     try {
       const response = await axiosInstance.post(`${prefix}/posts/create`, formData, {
@@ -57,10 +55,8 @@ const boardApi = {
     }
   },
 
-  
-
+ 
 
 };
-
 
 export default boardApi;
